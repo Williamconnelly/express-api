@@ -32,7 +32,11 @@ app.get("/games/:id", function(req, res) {
 	var games = fs.readFileSync("./data.json");
 	games = JSON.parse(games);
 	var gameIndex = req.params.id;
-	res.json(games[gameIndex]);
+	if (gameIndex >= games.length) {
+		res.json({name: null, rating: null});
+	} else {
+		res.json(games[gameIndex]);
+	};
 });
 
 // TODO PUT /games/:id/ - updates one game
@@ -40,9 +44,13 @@ app.put("/games/:id", function(req, res) {
 	var games = fs.readFileSync("./data.json");
 	games = JSON.parse(games);
 	var gameIndex = req.params.id;
-	games[gameIndex] = {name: req.body.name, rating: req.body.rating};
-	fs.writeFileSync("./data.json", JSON.stringify(games));
-	res.json(games);
+	if (gameIndex >= games.length) {
+		res.json({name: null, rating: null});
+	} else {
+		games[gameIndex] = {name: req.body.name, rating: req.body.rating};
+		fs.writeFileSync("./data.json", JSON.stringify(games));
+		res.json(games);
+	};
 });
 
 // TODO DELETE /games/:id - deletes one game
@@ -50,9 +58,13 @@ app.delete("/games/:id", function(req, res) {
 	var games = fs.readFileSync("./data.json");
 	games = JSON.parse(games);
 	var gameIndex = req.params.id;
-	games.splice(gameIndex, 1);
-	fs.writeFileSync("./data.json", JSON.stringify(games));
-	res.json(games);
+	if (gameIndex >= games.length) {
+		res.json({name: null, rating: null});
+	} else {
+		games.splice(gameIndex, 1);
+		fs.writeFileSync("./data.json", JSON.stringify(games));
+		res.json(games);
+	};
 });
 
 app.listen(3000);
