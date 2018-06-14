@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Index Page</title>
+	</head>
+	<body>
+		<h1>All the games:</h1>
+		<ul>
+			<% games.forEach(function(game) { %>
+			<li><%= game.name %> is a <%= game.rating %></li>
+			<% }) %>
+		</ul>
+	</body>
+</html>
