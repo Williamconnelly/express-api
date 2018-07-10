@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Edit Page</title>
+	</head>
+	<body>
+		<h1>Please edit this game:</h1>
+		<ul>
+			<form method="POST" action="/games/<%= id %>">
+				<input type="text" name="name" value="<%= game.name %>" /><br />
+				<input type="text" name="rating" value="<%= game.rating %>")" /><br />
+				<input type="submit" value="Update!" />
+			</form>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+			<script src="/js/script.js"></script>
+		</ul>
+	</body>
+</html>

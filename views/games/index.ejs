@@ -6,9 +6,11 @@
 	<body>
 		<h1>All the games:</h1>
 		<ul>
-			<% games.forEach(function(game) { %>
-			<li><%= game.name %> is a <%= game.rating %></li>
+			<% games.forEach(function(game, i) { %>
+			<li><%= game.name %> is a <%= game.rating %> <a href="/games/<%= i %>">Delete</a></li>
 			<% }) %>
 		</ul>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="/js/script.js"></script>
 	</body>
 </html>

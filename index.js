@@ -14,6 +14,7 @@ app.use(bp.urlencoded({extended: true}));
 // GET / - Returns all games
 app.get("/games", function(req, res) {
 	var games = fs.readFileSync("./data.json");
+	// Find all
 	games = JSON.parse(games);
 	res.render("games/index", {games: games});
 });
@@ -42,6 +43,15 @@ app.get("/games/:id", function(req, res) {
 	} else {
 		res.render("games/show", {game: games[gameIndex]});
 	};
+});
+
+// GET /games/edit - returns the form for updating (UPDATE)
+app.get("/games/:id/edit", function(req, res) {
+	// Display original content of the index before change
+	var games = fs.readFileSync("./data.json");
+	games = JSON.parse(games);
+	var gameIndex = req.params.id;
+	res.render("games/edit", {game: games[gameIndex], id: req.params.id});
 });
 
 // TODO PUT /games/:id/ - updates one game
